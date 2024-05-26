@@ -4,21 +4,14 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("Введите элементы массива через пробел:");
-        string[] inputArray = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        // Вводим массив строк с клавиатуры или задаем его в коде
+        Console.WriteLine("Введите строки через пробел:");
+        string input = Console.ReadLine();
+        string[] initialArray = input.Split(' ');
 
-        string[] resultArray = FilterArray(inputArray);
-
-        foreach (string str in resultArray)
-        {
-            Console.WriteLine(str);
-        }
-    }
-
-    static string[] FilterArray(string[] inputArray)
-    {
+        // Определяем размер нового массива
         int count = 0;
-        foreach (string str in inputArray)
+        foreach (string str in initialArray)
         {
             if (str.Length <= 3)
             {
@@ -26,17 +19,23 @@ class Program
             }
         }
 
-        string[] resultArray = new string[count];
+        // Создаем новый массив и заполняем его подходящими строками
+        string[] newArray = new string[count];
         int index = 0;
-        foreach (string str in inputArray)
+        foreach (string str in initialArray)
         {
             if (str.Length <= 3)
             {
-                resultArray[index] = str;
+                newArray[index] = str;
                 index++;
             }
         }
 
-        return resultArray;
+        // Выводим новый массив
+        Console.WriteLine("Новый массив строк, длина которых меньше либо равна 3 символам:");
+        foreach (string str in newArray)
+        {
+            Console.WriteLine(str);
+        }
     }
 }
